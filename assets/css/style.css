@@ -32,7 +32,7 @@ body {
 }
 
 /* Header Block */
-.header {
+#header {
     width: 100%;
     background-color: var(--color-white);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -84,8 +84,15 @@ body {
 /* Actions Element */
 .header__actions {
     display: flex;
-    gap: 1rem;
     align-items: center;
+    gap: 1rem;
+}
+
+.header__welcome {
+    color: var(--color-text);
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-right: 0.5rem;
 }
 
 /* Button Block */
@@ -125,7 +132,7 @@ body {
 }
 
 /* Main content */
-main {
+#mainContent {
     flex: 1 0 auto;
 }
 
@@ -497,6 +504,39 @@ main {
     font-size: 1.5rem;
     color: var(--color-text);
     margin-bottom: 2rem;
+}
+
+/* Alert Messages */
+.alert {
+    padding: 1rem;
+    border-radius: 4px;
+    margin-bottom: 1.5rem;
+    border: 1px solid transparent;
+}
+
+.alert--error {
+    background-color: #fef2f2;
+    border-color: #fecaca;
+    color: #dc2626;
+}
+
+.alert--success {
+    background-color: #f0fdf4;
+    border-color: #bbf7d0;
+    color: #16a34a;
+}
+
+.alert__list {
+    margin: 0;
+    padding-left: 1.5rem;
+}
+
+.alert__list li {
+    margin-bottom: 0.25rem;
+}
+
+.alert__list li:last-child {
+    margin-bottom: 0;
 }
 
 /* 404 Page */

@@ -11,6 +11,9 @@
 
 session_start();
 
+// Include database connection
+require_once 'config/database.php';
+
 include_once 'components/header.php';
 
 
@@ -23,7 +26,7 @@ if (file_exists('pages/'.$page.'.php')) {
 }
 
 
-echo '<main class="main">';
+echo '<main id="mainContent">';
 
 
 include_once $include_page;

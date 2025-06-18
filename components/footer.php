@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<footer class="footer">
+<div id="footer">
     <div class="footer__container">
         <div class="footer__content">
             <div class="footer__section">
@@ -36,6 +36,4 @@
             <p class="footer__copyright">&copy; 2025 FileHub. All rights reserved.</p>
         </div>
     </div>
-</footer>
-</body>
-</html> 
+</div>
