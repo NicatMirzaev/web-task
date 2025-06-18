@@ -137,7 +137,7 @@ body {
 }
 
 /* Footer Block */
-.footer {
+#footer {
     background-color: var(--color-gray-light);
     padding: 4rem 0 0;
     margin-top: auto;
