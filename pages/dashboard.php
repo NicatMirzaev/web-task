@@ -45,6 +45,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['files'])) {
     }
 }
 
+// Delete file
+if (isset($_POST['delete_file_id'])) {
+    $deleteId = intval($_POST['delete_file_id']);
+    // Fetch file info to get the file name
+    $fileToDelete = $db->fetch("SELECT * FROM uploads WHERE id = ? AND user_id = ?", [$deleteId, $userId]);
+    if ($fileToDelete) {
+        $filePath = __DIR__ . '/../uploads/' . $fileToDelete['file_name'];
+        $deletedFromDisk = true;
+        if (file_exists($filePath)) {
+            $deletedFromDisk = unlink($filePath);
+        }
+        $db->query("DELETE FROM uploads WHERE id = ? AND user_id = ?", [$deleteId, $userId]);
+        if ($deletedFromDisk) {
+            $uploadMessage = 'File deleted successfully.';
+        } else {
+            $uploadMessage = 'File deleted from database, but file was not found on disk.';
+        }
+    } else {
+        $uploadMessage = 'File not found or you do not have permission to delete it.';
+    }
+}
+
 function formatFileSize($sizeKb) {
     if ($sizeKb < 1024) {
         return $sizeKb . ' KB';
@@ -91,7 +113,13 @@ $uploadedFiles = $db->fetchAll("SELECT * FROM uploads WHERE user_id = ? ORDER BY
                             <td><?php echo htmlspecialchars($file['original_file_name']); ?></td>
                             <td><?php echo formatFileSize($file['size']); ?></td>
                             <td><?php echo htmlspecialchars($file['upload_date']); ?></td>
-                            <td><a href="<?php echo BASE_URL . '/uploads/' . rawurlencode($file['file_name']); ?>" download class="header__menu-link dashboard__action-link">Download</a></td>
+                            <td>
+                                <a href="<?php echo BASE_URL . '/uploads/' . rawurlencode($file['file_name']); ?>" download class="header__menu-link dashboard__action-link">Download</a>
+                                <form method="POST" action="" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this file?');">
+                                    <input type="hidden" name="delete_file_id" value="<?php echo $file['id']; ?>">
+                                    <button type="submit" class="dashboard__action-link--delete" style="margin-left:12px;">Delete</button>
+                                </form>
+                            </td>
                         </tr>
                     <?php endforeach; ?>
                 <?php else: ?>
