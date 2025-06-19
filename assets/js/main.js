@@ -13,7 +13,22 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // File drag-and-drop functionality
 const dashboardUpload = document.querySelector('.dashboard__upload');
-if (dashboardUpload) {
+const uploadBtn = document.getElementById('dashboardUploadBtn');
+const fileInput = document.getElementById('dashboardFileInput');
+const uploadForm = document.querySelector('.dashboard__upload-form');
+if (uploadBtn && fileInput && uploadForm) {
+    uploadBtn.addEventListener('click', function() {
+        fileInput.click();
+    });
+    fileInput.addEventListener('change', function() {
+        if (fileInput.files.length > 0) {
+            uploadForm.submit();
+        }
+    });
+}
+
+// Update drag-and-drop to submit form
+if (dashboardUpload && fileInput && uploadForm) {
     dashboardUpload.addEventListener('dragover', function(e) {
         e.preventDefault();
         dashboardUpload.classList.add('dashboard__upload--dragover');
@@ -27,29 +42,8 @@ if (dashboardUpload) {
         dashboardUpload.classList.remove('dashboard__upload--dragover');
         const files = e.dataTransfer.files;
         if (files.length > 0) {
-            let fileNames = [];
-            for (let i = 0; i < files.length; i++) {
-                fileNames.push(files[i].name);
-            }
-            alert('Files dropped: ' + fileNames.join(', '));
-        }
-    });
-}
-
-const uploadBtn = document.getElementById('dashboardUploadBtn');
-const fileInput = document.getElementById('dashboardFileInput');
-if (uploadBtn && fileInput) {
-    uploadBtn.addEventListener('click', function() {
-        fileInput.click();
-    });
-    fileInput.addEventListener('change', function() {
-        const files = fileInput.files;
-        if (files.length > 0) {
-            let fileNames = [];
-            for (let i = 0; i < files.length; i++) {
-                fileNames.push(files[i].name);
-            }
-            alert('Files selected: ' + fileNames.join(', '));
+            fileInput.files = files;
+            uploadForm.submit();
         }
     });
 } 
