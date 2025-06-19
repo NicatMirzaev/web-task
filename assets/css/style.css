@@ -539,4 +539,110 @@ body {
     margin-bottom: 0;
 }
 
+/* Dashboard Page Styles */
+#dashboard {
+    background: var(--color-gray-light);
+    padding: 2rem 0;
+    min-height: 80vh;
+}
+
+.dashboard__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    background: var(--color-white);
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+
+.dashboard__title {
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.dashboard__subtitle {
+    color: var(--color-gray);
+    margin-bottom: 2rem;
+}
+
+.dashboard__upload {
+    border: 2px dashed var(--color-border);
+    border-radius: 8px;
+    padding: 2.5rem 1rem;
+    text-align: center;
+    margin-bottom: 2.5rem;
+    background: var(--color-gray-light);
+}
+
+.dashboard__upload-title {
+    font-weight: bold;
+}
+
+.dashboard__upload-desc {
+    margin: 0.5rem 0 1.5rem;
+    color: var(--color-gray);
+}
+
+.dashboard__upload-btn {
+    margin-top: 0.5rem;
+}
+
+.dashboard__section-title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.dashboard__table-wrapper {
+    overflow-x: auto;
+}
+
+.dashboard__table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--color-white);
+}
+
+.dashboard__table th,
+.dashboard__table td {
+    text-align: left;
+    padding: 0.75rem 1rem;
+}
+
+.dashboard__table th {
+    color: var(--color-gray);
+    font-weight: 600;
+    border-bottom: 2px solid var(--color-border);
+}
+
+.dashboard__table tr:not(:last-child) {
+    border-bottom: 1px solid var(--color-border);
+}
+
+.dashboard__action-link {
+    color: var(--color-primary);
+    font-weight: 600;
+}
+
+@media (max-width: 768px) {
+    .dashboard__container {
+        padding: 1rem;
+    }
+    .dashboard__title {
+        font-size: 1.5rem;
+    }
+    .dashboard__section-title {
+        font-size: 1.1rem;
+    }
+    .dashboard__upload {
+        padding: 1.5rem 0.5rem;
+    }
+}
+
+.dashboard__upload--dragover {
+    border-color: var(--color-primary);
+    background: #e6f2ff;
+}
+
 /* 404 Page */
